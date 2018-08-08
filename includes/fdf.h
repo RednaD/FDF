@@ -92,11 +92,22 @@ typedef struct	s_global
 	int			color;
 }				t_global;
 
-void			draw_one_line(t_global *g, t_local *l);
-void			draw_map(t_global *g);
-void			init(t_global *g);
+void				init(t_global *g);
+void				update_color(int key, t_global *g);
+void				zoom(int key, t_global *g);
+void				toupdate(int key, t_global *g);
+int				key_hook(int key, t_global *g);
+void				update_map(t_global *g);
+void				draw_pos(t_global *g, t_local *ex);
+void				draw_neg(t_global *g, t_local *ex);
+void				draw_one_line(t_global *g, t_local *ex);
+void				draw_lines(t_global *g, t_local *ex);
+void				init_display(t_global *g);
+void				draw_map(t_global *g);
+int				ft_linelen(char *str);
 int				ft_test_line(char **str, t_global *g);
-char			*ft_load_map(int fd);
+char				*ft_load_map(int fd);
+int				ft_nb(int n);
 int				*ft_splitoa(char *str, char c);
 int				ft_test_map(char *str, t_global *g);
 int				init_map(t_global *g);
