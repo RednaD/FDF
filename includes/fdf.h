@@ -40,76 +40,76 @@
 
 typedef struct	s_point
 {
-	int			x;
-	int			y;
-}				t_point;
+	int	x;
+	int	y;
+}		t_point;
 
 typedef struct	s_local
 {
-	int			i;
-	int			j;
-	int			dx;
-	int			dy;
-	int			sx;
-	int			sy;
-	int 		sum;
-	int 		dirx;
-	int 		diry;
-	int			x;
-	int			y;
-	int			decal_x;
-	int			decal_y;
-	t_point		p;
-	t_point		p0;
-	t_point		p1;
-	t_point		tpp;
+	int	i;
+	int	j;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	sum;
+	int	dirx;
+	int	diry;
+	int	x;
+	int	y;
+	int	decal_x;
+	int	decal_y;
+	t_point	p;
+	t_point	p0;
+	t_point	p1;
+	t_point	tpp;
 
-	int		decalage;
-	int tmp_y;
-}				t_local;
+	int	decalage;
+	int 	tmp_y;
+}		t_local;
 
 typedef struct	s_global
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*title;
-	char		*data;
-	int			**map;
-	int			fd;
-	int			init;
-	int			pas;
-	int			dimx;
-	int			dimy;
-	int			midx;
-	int			midy;
-	int			indx;
-	int			indy;
-	int			w;
-	int			h;
-	int			nb_cols;
-	int			nb_lines;
-	int			color;
-}				t_global;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*title;
+	char	*data;
+	int	**map;
+	int	fd;
+	int	init;
+	int	pas;
+	int	dimx;
+	int	dimy;
+	int	midx;
+	int	midy;
+	int	indx;
+	int	indy;
+	int	w;
+	int	h;
+	int	nb_cols;
+	int	nb_lines;
+	int	color;
+}		t_global;
 
-void				init(t_global *g);
-void				update_color(int key, t_global *g);
-void				zoom(int key, t_global *g);
-void				toupdate(int key, t_global *g);
-int				key_hook(int key, t_global *g);
-void				update_map(t_global *g);
-void				draw_pos(t_global *g, t_local *ex);
-void				draw_neg(t_global *g, t_local *ex);
-void				draw_one_line(t_global *g, t_local *ex);
-void				draw_lines(t_global *g, t_local *ex);
-void				init_display(t_global *g);
-void				draw_map(t_global *g);
-int				ft_linelen(char *str);
-int				ft_test_line(char **str, t_global *g);
-char				*ft_load_map(int fd);
-int				ft_nb(int n);
-int				*ft_splitoa(char *str, char c);
-int				ft_test_map(char *str, t_global *g);
-int				init_map(t_global *g);
+void		init(t_global *g);
+void		update_color(int key, t_global *g);
+void		zoom(int key, t_global *g);
+void		toupdate(int key, t_global *g);
+int		key_hook(int key, t_global *g);
+void		update_map(t_global *g);
+void		draw_pos(t_global *g, t_local *ex);
+void		draw_neg(t_global *g, t_local *ex);
+void		draw_one_line(t_global *g, t_local *ex);
+void		draw_lines(t_global *g, t_local *ex);
+void		init_display(t_global *g);
+void		draw_map(t_global *g);
+int		ft_linelen(char *str);
+int		ft_test_line(char **str, t_global *g);
+char		*ft_load_map(int fd);
+int		ft_nb(int n);
+int		*ft_splitoa(char *str, char c);
+int		ft_test_map(char *str, t_global *g);
+int		init_map(t_global *g);
 
 #endif
