@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:12:17 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/05 15:04:38 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/16 15:44:06 by arusso           ###   ########.fr       */
 	/*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ void	zoom(int key, t_global *g)
 		g->w /= 2;
 		g->h /= 2;
 	}
-	g->indx = (WIDTH - g->w) / 2;
-	g->indy = (HEIGHT - g->h) / 2;
+	if (key == DIVIDE || key == MULTIPLY)
+	{
+		g->indx = (WIDTH - g->w) / 2 - (g->pas/ 2 * (g->nb_lines - 1) / 2);
+		g->indy = (HEIGHT - g->h) / 2;
+	}
 }
 
 void	toupdate(int key, t_global *g)
@@ -77,10 +80,6 @@ void	toupdate(int key, t_global *g)
 		g->indx += 5;
 	if (key == RESET)
 		g->init = 0;
-	printf("indx = %d\n", g->indx);
-	printf("indy = %d\n", g->indy);
-	printf("HEIGHT - 50 = %d\n", HEIGHT - 50);
-	printf("WIDTH - 50 = %d\n", WIDTH - 50);
 }
 
 int		key_hook(int key, t_global *g)
@@ -109,8 +108,10 @@ void	draw_pos(t_global *g, t_local *ex)
 {
 	ex->sum = ex->dx / 2;
 	ex->i = 0;
-	while (ex->i < ex->dx)
+	while (ex->i <= ex->dx)
 	{
+		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0) && (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
+			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
 		ex->tpp.x += ex->dirx;
 		ex->sum += ex->dy;
 		if (ex->sum >= ex->dx)
@@ -118,8 +119,6 @@ void	draw_pos(t_global *g, t_local *ex)
 			ex->sum -= ex->dx;
 			ex->tpp.y += ex->diry;
 		}
-		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0) && (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
-			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
 		ex->i++;
 	}
 }
@@ -128,7 +127,7 @@ void	draw_neg(t_global *g, t_local *ex)
 {
 	ex->sum = ex->dy / 2;
 	ex->i = 0;
-	while (ex->i < ex->dy)
+	while (ex->i <= ex->dy)
 	{
 		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0) && (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
 			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
@@ -189,9 +188,9 @@ void	init_display(t_global *g)
 		g->pas = g->h / (g->nb_lines - 1);
 		g->w = (g->nb_cols - 1) * g->pas;
 	}
-	g->dimx = 25;
+	g->dimx = g->pas / 2;
 	g->dimy = 5;
-	g->indx = (WIDTH - g->w) / 2;
+	g->indx = (WIDTH - g->w) / 2 - (g->pas/ 2 * (g->nb_lines - 1) / 2);
 	g->indy = (HEIGHT - g->h) / 2;
 	g->init++;
 	g->color = WHITE;
