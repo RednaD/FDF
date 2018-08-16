@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:13:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/16 15:57:21 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/16 16:22:52 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		ft_test_map(char *str, t_global *g)
 	c_map = ft_strsplit(str, '\n');
 	if (!(ft_test_line(c_map, g)))
 		return (0);
+	ft_putendl("Hello !");
 	if (!(g->map = (int**)malloc(sizeof(int*) * ft_tablen(c_map) + 1)))
 		return (0);
 	i = 0;
@@ -105,6 +106,7 @@ int		init_map(t_global *g)
 {
 	if (!(g->fd = open(g->title, O_RDONLY)) || g->fd == -1)
 		return (0);
+	ft_putendl("Meh !");
 	if (!(ft_test_map(ft_load_map(g->fd), g)))
 		return (0);
 	return (1);

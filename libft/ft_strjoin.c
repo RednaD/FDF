@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:10:13 by arusso            #+#    #+#             */
-/*   Updated: 2018/01/04 15:50:00 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/16 17:06:31 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	if (!(dest = ft_strnew(ft_strlen((char*)s1) + ft_strlen((char*)s2) + 1)))
+	if (!(dest = ft_strnew(ft_strlen((char*)s1) + ft_strlen((char*)s2))))
 		return (NULL);
 	dest = ft_strcat(dest, s1);
 	dest = ft_strcat(dest, s2);

@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:12:17 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/16 15:55:10 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/16 17:01:54 by arusso           ###   ########.fr       */
 	/*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 void	init(t_global *g)
 {
 	char	*name;
+	char	*tmp;
 
 	g->init = 0;
 	g->mlx = mlx_init();
 	name = ft_strdup("FDF : ");
+	tmp = name;
 	name = ft_strjoin(name, g->title);
+	free(tmp);
 	g->win = mlx_new_window(g->mlx, WIDTH, HEIGHT, name);
 	g->midx = WIDTH / 2;
 	g->midy = HEIGHT / 2;
