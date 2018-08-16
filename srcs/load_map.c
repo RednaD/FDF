@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:05:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/06/09 17:09:04 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/15 16:24:43 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*ft_load_map(int fd)
 		}
 		tmp = str;
 		str = ft_strjoin(str, line);
+		free(line);
 		str = ft_strjoin(str, "\n");
 		free(tmp);
 	}

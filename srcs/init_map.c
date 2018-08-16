@@ -6,11 +6,33 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:13:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/06/09 17:09:15 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/16 15:57:21 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	init_display(t_global *g)
+{
+	if (HEIGHT / g->nb_lines > WIDTH / g->nb_cols)
+	{
+		g->w = 3 * (WIDTH / 5);
+		g->pas = g->w / (g->nb_cols - 1);
+		g->h = (g->nb_lines - 1) * g->pas;
+	}
+	else
+	{
+		g->h = 3 * (HEIGHT / 5);
+		g->pas = g->h / (g->nb_lines - 1);
+		g->w = (g->nb_cols - 1) * g->pas;
+	}
+	g->dimx = g->pas / 2;
+	g->dimy = 5;
+	g->indx = (WIDTH - g->w) / 2 - (g->pas/ 2 * (g->nb_lines - 1) / 2);
+	g->indy = (HEIGHT - g->h) / 2;
+	g->init++;
+	g->color = WHITE;
+}
 
 int		ft_nb(int n)
 {
@@ -75,6 +97,7 @@ int		ft_test_map(char *str, t_global *g)
 		i++;
 	}
 	g->map[i] = NULL;
+	free(c_map);
 	return (1);
 }
 
