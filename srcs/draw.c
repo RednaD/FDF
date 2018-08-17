@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:49:56 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:35:52 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/17 16:53:48 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	draw_pos(t_global *g, t_local *ex)
 	ex->i = 0;
 	while (ex->i <= ex->dx)
 	{
-		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0) && (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
+		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0)
+				&& (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
 			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
 		ex->tpp.x += ex->dirx;
 		ex->sum += ex->dy;
@@ -37,7 +38,8 @@ void	draw_neg(t_global *g, t_local *ex)
 	ex->i = 0;
 	while (ex->i <= ex->dy)
 	{
-		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0) && (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
+		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0)
+				&& (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
 			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
 		ex->tpp.y += ex->diry;
 		ex->sum += ex->dx;
@@ -54,8 +56,8 @@ void	draw_one_line(t_global *g, t_local *ex)
 {
 	ex->tpp.x = ex->p0.x;
 	ex->tpp.y = ex->p0.y;
-	ex->dx = abs (ex->p1.x - ex->p0.x);
-	ex->dy = abs (ex->p1.y - ex->p0.y);
+	ex->dx = abs(ex->p1.x - ex->p0.x);
+	ex->dy = abs(ex->p1.y - ex->p0.y);
 	ex->dirx = (ex->p1.x - ex->p0.x > 0) ? 1 : -1;
 	ex->diry = (ex->p1.y - ex->p0.y > 0) ? 1 : -1;
 	if (ex->dx >= ex->dy)
@@ -71,13 +73,15 @@ void	draw_lines(t_global *g, t_local *ex)
 	if (ex->p.x != g->nb_cols - 1)
 	{
 		ex->p1.x = g->indx + (ex->p.x + 1) * g->pas + ex->decal_x;
-		ex->p1.y = g->indy + ex->p.y * g->pas - g->map[ex->p.y][ex->p.x + 1] * g->dimy;
+		ex->p1.y = g->indy + ex->p.y * g->pas
+			- g->map[ex->p.y][ex->p.x + 1] * g->dimy;
 		draw_one_line(g, ex);
 	}
 	if (ex->p.y != g->nb_lines - 1)
 	{
 		ex->p1.x = g->indx + ex->p.x * g->pas + ex->decal_x + g->dimx;
-		ex->p1.y = g->indy + (ex->p.y + 1) * g->pas - g->map[ex->p.y + 1][ex->p.x] * g->dimy;
+		ex->p1.y = g->indy + (ex->p.y + 1) * g->pas
+			- g->map[ex->p.y + 1][ex->p.x] * g->dimy;
 		draw_one_line(g, ex);
 	}
 }

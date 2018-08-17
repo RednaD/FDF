@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:13:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:44:59 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/17 16:57:16 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_display(t_global *g)
 	}
 	g->dimx = g->pas / 2;
 	g->dimy = 5;
-	g->indx = (WIDTH - g->w) / 2 - (g->pas/ 2 * (g->nb_lines - 1) / 2);
+	g->indx = (WIDTH - g->w) / 2 - (g->pas / 2 * (g->nb_lines - 1) / 2);
 	g->indy = (HEIGHT - g->h) / 2;
 	g->init++;
 	g->color = WHITE;

@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 16:39:45 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:40:19 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/17 16:56:56 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	zoom(int key, t_global *g)
 		g->w *= 2;
 		g->h *= 2;
 	}
-	if (key == DIVIDE && g->pas >= 1 && g->pas  >= 1 &&
-			(-(g->dimx) * 0.5 >= 1 || g->dimx * 0.5 >= 1))
+	if (key == DIVIDE && g->pas >= 1 && g->pas >= 1
+			&& (-(g->dimx) * 0.5 >= 1 || g->dimx * 0.5 >= 1))
 	{
 		g->pas = g->pas / 2;
 		g->dimx = g->dimx / 2;
@@ -45,7 +45,7 @@ void	zoom(int key, t_global *g)
 	}
 	if (key == DIVIDE || key == MULTIPLY)
 	{
-		g->indx = (WIDTH - g->w) / 2 - (g->pas/ 2 * (g->nb_lines - 1) / 2);
+		g->indx = (WIDTH - g->w) / 2 - (g->pas / 2 * (g->nb_lines - 1) / 2);
 		g->indy = (HEIGHT - g->h) / 2;
 	}
 }
@@ -71,9 +71,10 @@ void	toupdate(int key, t_global *g)
 int		key_hook(int key, t_global *g)
 {
 	if (key == ESCAPE)
-		exit (0);
+		exit(0);
 	if ((key >= LEFT && key <= UP) || key == MINUS || key == PLUS
-			|| key == MULTIPLY || key == DIVIDE || key == RESET || (key >= 82 && key <= 92))
+			|| key == MULTIPLY || key == DIVIDE || key == RESET
+			|| (key >= 82 && key <= 92))
 	{
 		zoom(key, g);
 		update_color(key, g);

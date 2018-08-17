@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:05:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:45:26 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/17 16:54:44 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_linelen(char *str)
 
 	i = 0;
 	count = 0;
-	while(str[i])
+	while (str[i])
 	{
 		while (!(ft_isdigit(str[i])) && str[i])
 			i++;
@@ -33,7 +33,7 @@ int		ft_linelen(char *str)
 
 int		ft_test_line(char **str, t_global *g)
 {
-	int 	len1;
+	int		len1;
 	int		len2;
 	int		i;
 
@@ -65,9 +65,9 @@ char	*ft_load_map(int fd)
 		if (ret == -1)
 		{
 			if (str)
-				free (str);
+				free(str);
 			if (line)
-				free (line);
+				free(line);
 			return (NULL);
 		}
 		tmp = str;
