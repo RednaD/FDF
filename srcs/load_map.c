@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:05:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/16 16:26:00 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/17 16:45:26 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_linelen(char *str)
 	count = 0;
 	while(str[i])
 	{
-		while (!(ft_isdigit(str[i])))
+		while (!(ft_isdigit(str[i])) && str[i])
 			i++;
 		if (ft_isdigit(str[i]))
 			count++;
@@ -41,14 +41,7 @@ int		ft_test_line(char **str, t_global *g)
 	i = 0;
 	while (str[i])
 	{
-	ft_putendl("Hey ! Listen !");
 		len2 = ft_linelen(str[i]);
-	ft_putstr("Len 1 == ");
-	ft_putnbr(len1);
-	ft_putendl("");
-	ft_putstr("Len 2 == ");
-	ft_putnbr(len2);
-	ft_putendl("");
 		if (len1 != len2)
 			return (0);
 		len1 = len2;
