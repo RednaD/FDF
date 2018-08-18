@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:12:17 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:57:46 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/18 18:33:40 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	init(t_global *g)
 	g->win = mlx_new_window(g->mlx, WIDTH, HEIGHT, name);
 	g->midx = WIDTH / 2;
 	g->midy = HEIGHT / 2;
+	g->img = mlx_new_image(g->mlx, WIDTH, HEIGHT);
+	g->data = mlx_get_data_addr(g->img, &g->bits_per_pix, &g->line, &g->endian);
 	free(name);
 }
 

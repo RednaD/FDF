@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 16:39:45 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:56:56 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/18 16:50:00 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		key_hook(int key, t_global *g)
 		update_color(key, g);
 		toupdate(key, g);
 		mlx_clear_window(g->mlx, g->win);
+		ft_memset(g->data, 0, sizeof(int) * WIDTH * HEIGHT);
 		draw_map(g);
 	}
 	return (0);

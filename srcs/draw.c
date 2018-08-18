@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:49:56 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/17 16:53:48 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/18 16:34:04 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_pos(t_global *g, t_local *ex)
 	{
 		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0)
 				&& (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
-			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
+			((int*)g->data)[ex->tpp.x + ex->tpp.y * WIDTH] = g->color;
 		ex->tpp.x += ex->dirx;
 		ex->sum += ex->dy;
 		if (ex->sum >= ex->dx)
@@ -40,7 +40,7 @@ void	draw_neg(t_global *g, t_local *ex)
 	{
 		if ((ex->tpp.x < WIDTH && ex->tpp.x >= 0)
 				&& (ex->tpp.y < HEIGHT && ex->tpp.y >= 0))
-			mlx_pixel_put(g->mlx, g->win, ex->tpp.x, ex->tpp.y, g->color);
+			((int*)g->data)[ex->tpp.x + ex->tpp.y * WIDTH] = g->color;
 		ex->tpp.y += ex->diry;
 		ex->sum += ex->dx;
 		if (ex->sum >= ex->dy)
@@ -108,4 +108,5 @@ void	draw_map(t_global *g)
 		draw_lines(g, &l);
 		l.p.x++;
 	}
+	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }
