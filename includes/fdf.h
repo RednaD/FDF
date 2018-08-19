@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 18:25:36 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/19 17:09:57 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/19 17:48:14 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ typedef struct	s_global
 	int			nb_cols;
 	int			nb_lines;
 	int			color;
+	int			line;
+	int			bits_per_pix;
+	int			endian;
 }				t_global;
 
 void			init(t_global *g);
