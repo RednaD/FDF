@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:13:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/18 18:54:55 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/19 16:56:52 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_display(t_global *g)
 	}
 	g->dimx = g->pas / 2;
 	g->dimy = 5;
-	g->indx = (WIDTH - g->w) / 2 - (g->pas/ 2 * (g->nb_lines - 1) / 2);
+	g->indx = (WIDTH - g->w) / 2 - (g->pas / 2 * (g->nb_lines - 1) / 2);
 	g->indy = (HEIGHT - g->h) / 2;
 	g->init++;
 	g->color = WHITE;
@@ -100,6 +100,7 @@ int		ft_test_map(char *str, t_global *g)
 	i = -1;
 	while (c_map[++i])
 		free(c_map[i]);
+	free(c_map);
 	free(str);
 	return (1);
 }
