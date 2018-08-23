@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_count_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 14:10:13 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/19 18:02:34 by arusso           ###   ########.fr       */
+/*   Created: 2018/08/23 15:13:30 by arusso            #+#    #+#             */
+/*   Updated: 2018/08/23 18:23:04 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_count_word(const char *str, char c)
 {
-	char *dest;
+	int i;
+	int count;
 
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(dest = ft_strnew(ft_strlen((char*)s1) + ft_strlen((char*)s2) + 1)))
-		return (NULL);
-	dest = ft_strcat(dest, s1);
-	dest = ft_strcat(dest, s2);
-	return (dest);
+	i = 0;
+	if (!str || !str[i])
+		return (0);
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] != c && (str[i - 1] == c || i == 0))
+		{
+			count++;
+			i++;
+		}
+		else
+			i++;
+	}
+	printf("nb_cols = %d\n", count);
+	return (count);
 }

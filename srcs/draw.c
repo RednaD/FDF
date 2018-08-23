@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:49:56 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/18 16:34:04 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/23 18:13:10 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ void	draw_map(t_global *g)
 	l.p.y = 0;
 	l.decal_x = 0;
 	l.decal_y = 0;
-	while (l.p.x < g->nb_cols - 1 || l.p.y < g->nb_lines - 1)
+	while (l.p.x + 1 < g->nb_cols || l.p.y + 1 < g->nb_lines)
 	{
+		printf("Moo !\n");
 		if (l.p.x > g->nb_cols - 1)
 		{
 			l.p.x = 0;

@@ -6,7 +6,7 @@
 #    By: arusso <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 13:46:59 by arusso            #+#    #+#              #
-#    Updated: 2018/02/02 16:52:21 by arusso           ###   ########.fr        #
+#    Updated: 2018/08/23 16:56:51 by arusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,8 @@ SRC		= ft_memset.c\
 		ft_tablen.c\
 		ft_error.c\
 		ft_getleaks.c\
+		ft_count_word.c\
+		ft_splitoa.c\
 		get_next_line.c
 
 OBJ		=	$(SRC:%.c=%.o)

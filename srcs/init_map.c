@@ -6,87 +6,91 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:13:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/19 16:56:52 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/23 18:30:59 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	init_display(t_global *g)
+int		check_lines(char **line)
 {
-	if (HEIGHT / g->nb_lines > WIDTH / g->nb_cols)
-	{
-		g->w = 3 * (WIDTH / 5);
-		g->pas = g->w / (g->nb_cols - 1);
-		g->h = (g->nb_lines - 1) * g->pas;
-	}
-	else
-	{
-		g->h = 3 * (HEIGHT / 5);
-		g->pas = g->h / (g->nb_lines - 1);
-		g->w = (g->nb_cols - 1) * g->pas;
-	}
-	g->dimx = g->pas / 2;
-	g->dimy = 5;
-	g->indx = (WIDTH - g->w) / 2 - (g->pas / 2 * (g->nb_lines - 1) / 2);
-	g->indy = (HEIGHT - g->h) / 2;
-	g->init++;
-	g->color = WHITE;
+	static int	count;
+	int			len;
+	int			i;
+
+	count = 0;
+	len = ft_count_word(*line, ' ');
+	if (count == 0)
+		count = len;
+	if ((count != len) || (len == 0))
+		return (0);
+	i = -1;
+	while ((*line)[++i])
+		if ((*line)[i] != ' ' && (*line)[i] != '\t')
+			if (((*line)[i] < '0' || (*line)[i] > '9') && (*line)[i] != '-')
+				return (0);
+	return (1);
 }
 
-int		ft_nb(int n)
+int		check_map(t_global *g)
 {
-	int sign;
-	int count;
+	int		ret;
+	char	*line;
 
-	sign = 0;
-	count = 1;
-	if (n < 0)
+	if (!(g->fd = open(g->title, O_RDONLY)))
+		return (ft_error("Error : coudn't open map."));
+	line = NULL;
+	g->nb_lines = 0;
+	while ((ret = get_next_line(g->fd, &line)) > 0)
 	{
-		sign = 1;
-		n = -n;
+		if ((check_lines(&line)) != 1)
+			return (0);
+		g->nb_lines++;
+		ft_strdel(&line);
 	}
-	while (n > 10)
-	{
-		count++;
-		n = n / 10;
-	}
-	return (count + sign);
+	if ((close(g->fd)) == -1 || g->nb_lines == 0)
+		return (0);
+	if ((g->fd = open(g->title, O_RDONLY)) == -1)
+		return (0);
+	return (1);
 }
 
-int		*ft_splitoa(char *str, char c)
+char	*load_map(int fd)
 {
-	int		*dest;
-	int		count;
-	int		i;
-	int		j;
+	char	*line;
+	char	*str;
+	char	*tmp;
+	int		ret;
 
-	count = ft_strlen(str) - ft_strrec(str, c);
-	if (!(dest = (int*)malloc(sizeof(int) * count) + 1))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (str[i])
+	str = ft_strnew(0);
+	while ((ret = get_next_line(fd, &line)))
 	{
-		while (str[i] == c)
-			i++;
-		dest[j] = ft_atoi(str + i);
-		j++;
-		while (str[i] != c && str[i])
-			i++;
+		if (ret == -1)
+		{
+			free(str);
+			free(line);
+			return (NULL);
+		}
+		tmp = str;
+		str = ft_strjoin(str, line);
+		free(line);
+		str = ft_strcat(str, "\n");
+		free(tmp);
 	}
-	dest[j] = '\0';
-	return (dest);
+	close(fd);
+	return (str);
 }
 
-int		ft_test_map(char *str, t_global *g)
+int		init_map(t_global *g)
 {
 	char	**c_map;
 	size_t	i;
+	char	*str;
 
+	str = load_map(g->fd);
 	c_map = ft_strsplit(str, '\n');
-	if (!(ft_test_line(c_map, g)))
-		return (0);
+	printf("WTH ?! %d\n", ft_count_word((const char*)c_map[1], ' '));
+	g->nb_cols = ft_count_word((const char*)c_map[1], ' ');
 	if (!(g->map = (int**)malloc(sizeof(int*) * ft_tablen(c_map) + 1)))
 		return (0);
 	i = 0;
@@ -102,12 +106,5 @@ int		ft_test_map(char *str, t_global *g)
 		free(c_map[i]);
 	free(c_map);
 	free(str);
-	return (1);
-}
-
-int		init_map(t_global *g)
-{
-	if (!(ft_test_map(ft_load_map(g->fd), g)))
-		return (0);
 	return (1);
 }

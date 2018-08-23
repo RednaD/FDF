@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:04:44 by arusso            #+#    #+#             */
-/*   Updated: 2018/02/02 16:52:00 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/23 17:20:06 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char			*ft_strccut(char **str, char c);
 size_t			ft_tablen(char **tab);
 int				ft_error(char *str);
 void			ft_getleaks(char *str);
+int				ft_count_word(const char *str, char c);
+int				*ft_splitoa(char *str, char c);
 int				get_next_line(int fd, char **line);
 
 #endif

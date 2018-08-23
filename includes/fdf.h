@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 18:25:36 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/19 17:48:14 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/23 16:58:21 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+# define BUFF_SIZE 32
 # define WIDTH 1440
 # define HEIGHT 900
 # define WHITE 0x00FFFFFF
@@ -63,7 +64,6 @@ typedef struct	s_local
 	t_point		p0;
 	t_point		p1;
 	t_point		tpp;
-	int			decalage;
 	int			tmp_y;
 }				t_local;
 
@@ -80,8 +80,6 @@ typedef struct	s_global
 	int			pas;
 	int			dimx;
 	int			dimy;
-	int			midx;
-	int			midy;
 	int			indx;
 	int			indy;
 	int			w;
@@ -89,9 +87,9 @@ typedef struct	s_global
 	int			nb_cols;
 	int			nb_lines;
 	int			color;
+	int			endian;
 	int			line;
 	int			bits_per_pix;
-	int			endian;
 }				t_global;
 
 void			init(t_global *g);
@@ -106,12 +104,10 @@ void			draw_one_line(t_global *g, t_local *ex);
 void			draw_lines(t_global *g, t_local *ex);
 void			init_display(t_global *g);
 void			draw_map(t_global *g);
-int				ft_linelen(char *str);
-int				ft_test_line(char **str, t_global *g);
-char			*ft_load_map(int fd);
-int				ft_nb(int n);
-int				*ft_splitoa(char *str, char c);
-int				ft_test_map(char *str, t_global *g);
+int				line_len(char *str);
+char			*load_map(int fd);
+int				check_lines(char **line);
+int				check_map(t_global *g);
 int				init_map(t_global *g);
 
 #endif

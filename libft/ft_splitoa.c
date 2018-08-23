@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_splitoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 14:10:13 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/19 18:02:34 by arusso           ###   ########.fr       */
+/*   Created: 2018/08/23 16:55:38 by arusso            #+#    #+#             */
+/*   Updated: 2018/08/23 16:57:37 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int		*ft_splitoa(char *str, char c)
 {
-	char *dest;
+	int		*dest;
+	int		count;
+	int		i;
+	int		j;
 
-	if (!s1 || !s2)
+	count = ft_strlen(str) - ft_strrec(str, c);
+	if (!(dest = (int*)malloc(sizeof(int) * count) + 1))
 		return (NULL);
-	if (!(dest = ft_strnew(ft_strlen((char*)s1) + ft_strlen((char*)s2) + 1)))
-		return (NULL);
-	dest = ft_strcat(dest, s1);
-	dest = ft_strcat(dest, s2);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		while (str[i] == c)
+			i++;
+		dest[j] = ft_atoi(str + i);
+		j++;
+		while (str[i] != c && str[i])
+			i++;
+	}
+	dest[j] = '\0';
 	return (dest);
 }
