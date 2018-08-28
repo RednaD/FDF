@@ -6,7 +6,7 @@
 #    By: arusso <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 15:27:09 by arusso            #+#    #+#              #
-#    Updated: 2018/08/17 16:41:20 by arusso           ###   ########.fr        #
+#    Updated: 2018/08/23 16:52:05 by arusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS =  -Wall -Werror -Wextra
 MLXFLAGS = -framework OpenGL -framework AppKit
 
 SRC_PATH = ./srcs/
-SRC_NAME = main.c init_map.c load_map.c draw.c keys.c
+SRC_NAME = main.c init_map.c draw.c keys.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 INCLUDES_PATH = ./includes/

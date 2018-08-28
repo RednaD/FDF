@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:49:56 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/23 18:13:10 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/28 22:30:39 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	draw_map(t_global *g)
 	l.decal_y = 0;
 	while (l.p.x + 1 < g->nb_cols || l.p.y + 1 < g->nb_lines)
 	{
-		printf("Moo !\n");
 		if (l.p.x > g->nb_cols - 1)
 		{
 			l.p.x = 0;
@@ -109,5 +108,7 @@ void	draw_map(t_global *g)
 		draw_lines(g, &l);
 		l.p.x++;
 	}
+	if (g->nb_lines == 1 && g->nb_cols == 1)
+		((int*)g->data)[g->indy * WIDTH + g->indx] = g->color;
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }

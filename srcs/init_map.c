@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:13:29 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/23 18:30:59 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/28 22:41:59 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int		check_lines(char **line)
 	int			len;
 	int			i;
 
-	count = 0;
+	if (!count)
+		count = 0;
 	len = ft_count_word(*line, ' ');
 	if (count == 0)
 		count = len;
@@ -26,9 +27,11 @@ int		check_lines(char **line)
 		return (0);
 	i = -1;
 	while ((*line)[++i])
+	{
 		if ((*line)[i] != ' ' && (*line)[i] != '\t')
 			if (((*line)[i] < '0' || (*line)[i] > '9') && (*line)[i] != '-')
 				return (0);
+	}
 	return (1);
 }
 
@@ -89,8 +92,7 @@ int		init_map(t_global *g)
 
 	str = load_map(g->fd);
 	c_map = ft_strsplit(str, '\n');
-	printf("WTH ?! %d\n", ft_count_word((const char*)c_map[1], ' '));
-	g->nb_cols = ft_count_word((const char*)c_map[1], ' ');
+	g->nb_cols = ft_count_word((const char*)c_map[0], ' ');
 	if (!(g->map = (int**)malloc(sizeof(int*) * ft_tablen(c_map) + 1)))
 		return (0);
 	i = 0;
