@@ -6,7 +6,7 @@
 /*   By: arusso <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 15:13:30 by arusso            #+#    #+#             */
-/*   Updated: 2018/08/23 18:23:04 by arusso           ###   ########.fr       */
+/*   Updated: 2018/08/28 22:59:50 by arusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_count_word(const char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] != c && (str[i - 1] == c || i == 0))
+		if (str[i] != c && (i == 0 || str[i - 1] == c))
 		{
 			count++;
 			i++;
@@ -31,6 +31,5 @@ int	ft_count_word(const char *str, char c)
 		else
 			i++;
 	}
-	printf("nb_cols = %d\n", count);
 	return (count);
 }
